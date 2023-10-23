@@ -6,6 +6,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -90,7 +91,10 @@ public class ZeroTest {
         assertEquals("id", actualId.getText(), "Мы попали на не верную страницу");
 
 
-        // остановился на 27 минуте подготовки к практическому заданию
+        // поместить локатор
+        // @FindBy, работает только с
+        // передается страничка по ссылке this
+        // PageFactory.initElements(driver, this)
 
     }
 
