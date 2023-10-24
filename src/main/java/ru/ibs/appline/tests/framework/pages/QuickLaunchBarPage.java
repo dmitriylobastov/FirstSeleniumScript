@@ -4,21 +4,24 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import ru.ibs.appline.tests.framework.managers.PageManager;
 
+import java.time.Duration;
 import java.util.List;
 
-public class QuickLaunchBarPage {
-    WebDriver driver;
+public class QuickLaunchBarPage extends BasePage {
 
     public void checkOpenPage() {
-        Assertions.assertEquals("Панель инструментов", driver.getTitle(), "Заголовок не соответствует");
+        Assertions.assertEquals("Панель инструментов", driverManager.getDriver().getTitle(), "Заголовок не соответствует");
     }
 
     @FindBy(xpath = "//ul[@class='nav nav-multilevel main-menu']/li/a/span[@class='title']")
-    protected List<WebElement> listBaseMenu;
+    private List<WebElement> listBaseMenu;
 
     @FindBy(xpath = "//ul[@class='nav nav-multilevel main-menu']/li/ul/li/a")
-    protected List<WebElement> listSubMenu;
+    private List<WebElement> listSubMenu;
 
     /**
      * Клик по базовому меню на странице "Панель инструментов"
@@ -40,7 +43,7 @@ public class QuickLaunchBarPage {
     public void selectSubMenuByText(String nameSubMenu) {
         for (WebElement itemMenu : listSubMenu) {
             if (itemMenu.getText().contains(nameSubMenu)) {
-                itemMenu.click();
+                waitUtilElementToBeClickable(itemMenu).click();
                 return;
             }
         }

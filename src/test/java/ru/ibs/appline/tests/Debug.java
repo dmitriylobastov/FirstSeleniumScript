@@ -8,14 +8,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.List;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class Debug {
     WebDriver driver = new ChromeDriver();
@@ -29,31 +26,53 @@ public class Debug {
         driver.manage().window().maximize();
     }
 
-    @FindBy(xpath = "//ul[@class='nav nav-multilevel main-menu']/li/a/span[@class='title']")
-    List<WebElement> baseMenu;
+//    @FindBy(xpath = "//ul[@class='nav nav-multilevel main-menu']/li/a/span[@class='title']")
+//    List<WebElement> baseMenu;
+//
+//    public void selectBaseMenuByText(String nameMenu) {
+//        for (WebElement itemMenu : baseMenu) {
+//            if (itemMenu.getText().contains(nameMenu)) {
+//                itemMenu.click();
+//                return;
+//            }
+//        }
+//        Assertions.fail("Меню с текстом " + nameMenu + "не найдено в панеле инструментов");
+//    }
 
-    public void selectBaseMenuByText(String nameMenu) {
-        for (WebElement itemMenu : baseMenu) {
-            if (itemMenu.getText().contains(nameMenu)) {
-                itemMenu.click();
-                return;
-            }
-        }
-        Assertions.fail("Меню с текстом " + nameMenu + "не найдено в панеле инструментов");
+    public void checkOpenAuthtorizationPageDebug() {
+        Assertions.assertEquals("Логин", driver.getTitle(),"Заголовок не соответствует");
     }
 
     @Test
     public void test1() {
-        // 1. Авторизация
-        wait.until(visibilityOf(driver.findElement(By.xpath(
-                "//form[@id = 'login-form']"))));
-        driver.findElement(By.xpath("//input[@name='_username']")).sendKeys("Prohorova Alla");
-        driver.findElement(By.xpath("//input[@name='_password']")).sendKeys("testing");
-        driver.findElement(By.xpath("//button[@type='submit']")).click();
 
-        // 2. Проверить панель быстрого запуска
-        Assertions.assertEquals("Панель инструментов", driver.getTitle(),"Заголовок не соответствует");
-        //  wait.until(visibilityOf(driver.findElement(By.xpath("//h1[text()='Панель быстрого запуска']"))));
+            // 1. Авторизация
+        checkOpenAuthtorizationPageDebug();
+//            authtorizationPage.usernameInput("Prohorova Alla");
+//            authtorizationPage.passwordInput("testing");
+//            authtorizationPage.setClickAuthorization();
+//
+//
+//            // 2. Проверить панель быстрого запуска
+//            quickLaunchBarPage.checkOpenPage();
+//
+//            // 3. Расходы -> Командировки
+//            quickLaunchBarPage.selectBaseMenuByText("Расходы");
+//            quickLaunchBarPage.selectSubMenuByText("Командировки");
+//
+//
+
+
+//            // 1. Авторизация
+//        wait.until(visibilityOf(driver.findElement(By.xpath(
+//                "//form[@id = 'login-form']"))));
+//        driver.findElement(By.xpath("//input[@name='_username']")).sendKeys("Prohorova Alla");
+//        driver.findElement(By.xpath("//input[@name='_password']")).sendKeys("testing");
+//        driver.findElement(By.xpath("//button[@type='submit']")).click();
+//
+//        // 2. Проверить панель быстрого запуска
+//        Assertions.assertEquals("Панель инструментов", driver.getTitle(),"Заголовок не соответствует");
+//        //  wait.until(visibilityOf(driver.findElement(By.xpath("//h1[text()='Панель быстрого запуска']"))));
 
 //        // 3. Расходы -> Командировки
         //selectBaseMenuByText("Расходы");

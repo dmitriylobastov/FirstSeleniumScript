@@ -4,26 +4,25 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import ru.ibs.appline.tests.base.BaseTests;
-import ru.ibs.appline.tests.framework.pages.AuthtorizationPage;
+import ru.ibs.appline.tests.framework.pages.AuthPage;
 import ru.ibs.appline.tests.framework.pages.QuickLaunchBarPage;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class Task2Test extends BaseTests {
-    AuthtorizationPage authtorizationPage = new AuthtorizationPage();
+    AuthPage authtorizationPage = new AuthPage();
     QuickLaunchBarPage quickLaunchBarPage = new QuickLaunchBarPage();
-
 
 
     @Test
     public void test1() {
 
         // 1. Авторизация
-        //authtorizationPage.checkOpenAuthtorizationPage();
-        authtorizationPage.usernameInput("Prohorova Alla");
-        authtorizationPage.passwordInput("testing");
-        authtorizationPage.setClickAuthorization();
+        pageManager.getAuthPage()
+                .checkOpenAuthPage()
+                .usernameInput("Prohorova Alla")
+                .passwordInput("testing")
+                .setClickAuthorization();
 
 
         // 2. Проверить панель быстрого запуска
@@ -63,16 +62,17 @@ public class Task2Test extends BaseTests {
         // 9. Проверить, что на странице появилось сообщение: "Список командируемых сотрудников не может быть пустым"
 
     }
-    public void input(String xpath, String input) {
-        WebElement element = driver.findElement(By.xpath(String.format(
-                "%s", xpath)));
-        element.clear();
-        element.sendKeys(String.format(
-                "%s", input));
-    }
 
-    public void loading() {
-        wait.until(invisibilityOf(driver.findElement(By.xpath(
-                "//div[@class='loader-mask shown']"))));
-    }
+//    public void input(String xpath, String input) {
+//        WebElement element = driver.findElement(By.xpath(String.format(
+//                "%s", xpath)));
+//        element.clear();
+//        element.sendKeys(String.format(
+//                "%s", input));
+//    }
+//
+//    public void loading() {
+//        wait.until(invisibilityOf(driver.findElement(By.xpath(
+//                "//div[@class='loader-mask shown']"))));
+//    }
 }

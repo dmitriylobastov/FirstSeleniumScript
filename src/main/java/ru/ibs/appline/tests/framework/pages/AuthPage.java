@@ -4,12 +4,22 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 
-public class AuthtorizationPage {
-    WebDriver driver;
+public class AuthPage extends BasePage {
 
-    public void checkOpenAuthtorizationPage() {
-        Assertions.assertEquals("Логин", driver.getTitle(), "Заголовок не соответствует");
+//    public void checkOpenAuthPage() {
+//        Assertions.assertEquals("Логин", driver.getTitle(), "Заголовок не соответствует");
+//    }
+
+
+    @FindBy(xpath = "//h2[@class='title']")
+    private WebElement title;
+    public AuthPage checkOpenAuthPage() {
+        Assertions.assertEquals("Логин", title.getText(), "Заголовок не соответствует");
+        return 
     }
 
     @FindBy(xpath = "//input[@name='_username']")
@@ -25,13 +35,6 @@ public class AuthtorizationPage {
     public void passwordInput(String password) {
         passwordInput.sendKeys(password);
     }
-
-//            // 1. Авторизация
-//            wait.until(visibilityOf(driver.findElement(By.xpath(
-//            "//form[@id = 'login-form']"))));
-//        driver.findElement(By.xpath("//input[@name='_username']")).sendKeys("Prohorova Alla");
-//        driver.findElement(By.xpath("//input[@name='_password']")).sendKeys("testing");
-
 
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement buttonAuthorization;
