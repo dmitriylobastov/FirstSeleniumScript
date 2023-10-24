@@ -1,7 +1,7 @@
 package ru.ibs.appline.tests.framework.managers;
 
-import ru.ibs.appline.tests.framework.pages.AuthPage;
-import ru.ibs.appline.tests.framework.pages.BasePage;
+import ru.ibs.appline.tests.framework.pages.AuthStartPage;
+import ru.ibs.appline.tests.framework.pages.BusinessTripPage;
 import ru.ibs.appline.tests.framework.pages.QuickLaunchBarPage;
 
 public class PageManager {
@@ -11,13 +11,15 @@ public class PageManager {
     /**
      * Страница авторизации
      */
-    private AuthPage authPage;
+    private AuthStartPage authPage;
 
     /**
      * Панель быстрого запуска
      */
 
     private QuickLaunchBarPage quickLaunchBarPage;
+
+    private BusinessTripPage businessTripPage;
 
 
     private PageManager() {
@@ -29,9 +31,9 @@ public class PageManager {
         return INSTANCE;
     }
 
-    public AuthPage getAuthPage() {
+    public AuthStartPage getAuthStartPage() {
         if (authPage == null) {
-            authPage = new AuthPage();
+            authPage = new AuthStartPage();
         }
         return authPage;
     }
@@ -42,6 +44,14 @@ public class PageManager {
         }
         return quickLaunchBarPage;
     }
+
+    public BusinessTripPage getBusinessTripPage() {
+        if (businessTripPage == null) {
+            businessTripPage = new BusinessTripPage();
+        }
+        return businessTripPage;
+    }
+
 
 
 
