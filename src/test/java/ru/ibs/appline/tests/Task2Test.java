@@ -1,18 +1,12 @@
 package ru.ibs.appline.tests;
 
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
 import ru.ibs.appline.tests.base.BaseTests;
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class Task2Test extends BaseTests {
 
     @Test
-    public void test1() {
-
+    public void taskTwoTest() {
         // 1. Авторизация
         pageManager.getAuthStartPage()
                 .checkOpenAuthPage()

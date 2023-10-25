@@ -5,13 +5,16 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
+import static ru.ibs.appline.tests.framework.utils.PropConst.NAME_DRIVER_WINDOWS;
+import static ru.ibs.appline.tests.framework.utils.PropConst.PATH_CHROME_DRIVER_WINDOWS;
+
 public class DriverManager {
 
     private WebDriver driver;
     private static DriverManager INSTANCE = null;
     private DriverManager() {
     }
-    public static DriverManager getInstance() {
+    public static DriverManager getDriverManager() {
         if (INSTANCE == null) {
             INSTANCE = new DriverManager();
         }
@@ -34,11 +37,9 @@ public class DriverManager {
      * Метод инициализирующий веб драйвер
      */
     private void initDriver() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/webdriver/chromedriver.exe");
+        System.setProperty(NAME_DRIVER_WINDOWS, PATH_CHROME_DRIVER_WINDOWS);
         driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        InitManager.initFramework();
     }
 
     public void quitDriver() {

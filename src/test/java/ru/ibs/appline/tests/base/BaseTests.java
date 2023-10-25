@@ -1,33 +1,35 @@
 package ru.ibs.appline.tests.base;
 
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.ibs.appline.tests.framework.managers.DriverManager;
+import ru.ibs.appline.tests.framework.managers.InitManager;
 import ru.ibs.appline.tests.framework.managers.PageManager;
+import ru.ibs.appline.tests.framework.managers.TestPropManager;
 
-import java.time.Duration;
+import static ru.ibs.appline.tests.framework.utils.PropConst.BASE_URL;
 
 public class BaseTests {
 
-    private DriverManager driverManager = DriverManager.getInstance();
+    private static DriverManager driverManager = DriverManager.getDriverManager();
+
+    private static TestPropManager testPropertiesManager = TestPropManager.getTestPropManager();
 
     protected PageManager pageManager = PageManager.getInstance();
 
-    @BeforeEach
-    public void before() {
-        driverManager.getDriver().get("http://training.appline.ru/user/login");
+    @BeforeAll
+    public static void befofeAll() {
+        InitManager.initFramework();
     }
 
-    @AfterEach
-    public void after() {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        driverManager.getDriver().quit();
+    @BeforeEach
+    public void before() {
+        driverManager.getDriver().get(testPropertiesManager.getProperty(BASE_URL));
+    }
+
+    @AfterAll
+    public static void afterClass() {
+        InitManager.quitFramework();
     }
 }
