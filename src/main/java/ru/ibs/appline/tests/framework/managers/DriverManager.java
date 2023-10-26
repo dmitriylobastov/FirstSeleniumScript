@@ -21,11 +21,6 @@ public class DriverManager {
         return INSTANCE;
     }
 
-    /**
-     * Метод ленивой инициализации веб драйвера
-     *
-     * @return WebDriver - возвращает веб драйвер
-     */
     public WebDriver getDriver() {
         if (driver == null) {
             initDriver();
@@ -33,9 +28,6 @@ public class DriverManager {
         return driver;
     }
 
-    /**
-     * Метод инициализирующий веб драйвер
-     */
     private void initDriver() {
         System.setProperty(NAME_DRIVER_WINDOWS, PATH_CHROME_DRIVER_WINDOWS);
         driver = new ChromeDriver();

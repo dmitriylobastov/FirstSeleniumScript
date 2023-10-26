@@ -39,6 +39,7 @@ public class QuickLaunchBarPage extends BasePage {
         for (WebElement itemMenu : listSubMenu) {
             if (itemMenu.getText().contains(nameSubMenu)) {
                 waitUtilElementToBeClickable(itemMenu).click();
+                loading();
                 return pageManager.getBusinessTripPage();
             }
         }

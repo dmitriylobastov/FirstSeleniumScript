@@ -2,6 +2,7 @@ package ru.ibs.appline.tests.framework.managers;
 
 import ru.ibs.appline.tests.framework.pages.AuthStartPage;
 import ru.ibs.appline.tests.framework.pages.BusinessTripPage;
+import ru.ibs.appline.tests.framework.pages.CreatedBusinessTripPage;
 import ru.ibs.appline.tests.framework.pages.QuickLaunchBarPage;
 
 public class PageManager {
@@ -18,9 +19,8 @@ public class PageManager {
      */
 
     private QuickLaunchBarPage quickLaunchBarPage;
-
     private BusinessTripPage businessTripPage;
-
+    private CreatedBusinessTripPage createdBusinessTripPage;
 
     private PageManager() {
     }
@@ -50,6 +50,13 @@ public class PageManager {
             businessTripPage = new BusinessTripPage();
         }
         return businessTripPage;
+    }
+
+    public CreatedBusinessTripPage getCreatedBusinessTripPage() {
+        if (createdBusinessTripPage == null) {
+            createdBusinessTripPage = new CreatedBusinessTripPage();
+        }
+        return createdBusinessTripPage;
     }
 
 

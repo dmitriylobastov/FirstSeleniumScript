@@ -1,22 +1,63 @@
 package ru.ibs.appline.tests;
 
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.ibs.appline.tests.base.BaseTests;
+import ru.ibs.appline.tests.framework.managers.DriverManager;
+import ru.ibs.appline.tests.framework.managers.TestPropManager;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
+import static ru.ibs.appline.tests.framework.utils.PropConst.LOGIN;
+import static ru.ibs.appline.tests.framework.utils.PropConst.PASSWORD;
 
 public class Task2Test extends BaseTests {
+
+    private static TestPropManager testPropertiesManager = TestPropManager.getTestPropManager();
+
+    protected DriverManager driverManager = DriverManager.getDriverManager();
 
     @Test
     public void taskTwoTest() {
         // 1. Авторизация
         pageManager.getAuthStartPage()
                 .checkOpenAuthPage()
-                .usernameInput("Prohorova Alla")
-                .passwordInput("testing")
+                .usernameInput(testPropertiesManager.getProperty(LOGIN))
+                .passwordInput(testPropertiesManager.getProperty(PASSWORD))
                 .setClickAuthorization()
                 .checkOpenPage()
                 .selectBaseMenuByText("Расходы")
                 .selectSubMenuByText("Командировки")
-                .checkOpenBusinessTripPagePage();
+                .checkOpenBusinessTripPagePage()
+                .clickCreatedBusinessTrip();
+//                .checkOpenCreatedBusinessTripPage()
+////                .clickSeparation()
+//                .clickSelectSeparation();
+
+        // 6. Выбор и заполнение полей
+        // Подразделение: "Центр разработки и сопровождения"
+
+        //  не работают шаги при выносе в CreatedBusinessTripPage, без выноса всё ок
+        // не работает .checkOpenCreatedBusinessTripPage()
+        // не работает .clickSelectSeparation();
+        driverManager.getDriver().findElement(By.xpath("//select[@data-name='field__business-unit']/option[@value='4']"))
+                .click();
+
+
+
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+
+
 
 
 

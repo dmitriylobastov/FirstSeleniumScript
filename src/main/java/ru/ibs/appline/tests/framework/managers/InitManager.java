@@ -6,12 +6,9 @@ import static ru.ibs.appline.tests.framework.utils.PropConst.*;
 
 public class InitManager {
 
-
     private static final TestPropManager props = TestPropManager.getTestPropManager();
 
-
     private static final DriverManager driverManager = DriverManager.getDriverManager();
-
 
     public static void initFramework() {
         driverManager.getDriver().manage().window().maximize();

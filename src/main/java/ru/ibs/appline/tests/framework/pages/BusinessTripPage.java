@@ -8,8 +8,11 @@ import java.time.Duration;
 
 public class BusinessTripPage extends BasePage {
 
-    @FindBy(xpath = "//h1[@class='oro-subtitle']")
+    @FindBy(xpath = "//h1/span[@class='caret']/..")
     private WebElement titleBusinessTrip;
+
+    @FindBy(xpath = "//a[@title='Создать командировку']")
+    private WebElement createdBusinessTrip;
 
     public BusinessTripPage checkOpenBusinessTripPagePage() {
         Assertions.assertEquals(
@@ -17,5 +20,9 @@ public class BusinessTripPage extends BasePage {
         return this;
     }
 
-    //getBusinessTripPage()
+    public CreatedBusinessTripPage clickCreatedBusinessTrip() {
+        createdBusinessTrip.click();
+        loading();
+        return pageManager.getCreatedBusinessTripPage();
+    }
 }

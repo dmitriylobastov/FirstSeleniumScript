@@ -1,8 +1,10 @@
 package ru.ibs.appline.tests.framework.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,6 +13,8 @@ import ru.ibs.appline.tests.framework.managers.PageManager;
 import ru.ibs.appline.tests.framework.managers.TestPropManager;
 
 import java.time.Duration;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
 
 public class BasePage {
 
@@ -46,5 +50,18 @@ public class BasePage {
     protected WebElement waitUtilElementToBeVisible(WebElement element) {
         return wait.until(ExpectedConditions.visibilityOf(element));
     }
+
+    @FindBy(xpath = "//div[@class='loader-mask shown']")
+    private WebElement loader;
+
+    public void loading() {
+        waitUtilElementToBeVisible(loader);
+    }
+
+//    public void loading() {
+//        waitUtilElementToBeVisible(loading);
+//    }
+
+
 
 }
