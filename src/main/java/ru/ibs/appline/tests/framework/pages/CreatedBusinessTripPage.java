@@ -30,8 +30,9 @@ public class CreatedBusinessTripPage {
             separation.selectByValue("4");
             return this;
         }
-        public void clickSelectSeparation() {
+        public CreatedBusinessTripPage clickSelectSeparation() {
             selectSeparation.click();
+            return this;
     }
 
 
